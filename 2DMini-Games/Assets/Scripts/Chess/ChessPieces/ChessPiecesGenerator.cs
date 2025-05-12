@@ -7,13 +7,10 @@ public class ChessPiecesGenerator : MonoBehaviour
     [SerializeField] private GameObject pawn;
     private void Start()
     {
-        // var tile = gridManager.GetGrid;
-        // Debug.Log(tile);
-    }
-    
-    private void Update()
-    {
-        
+        for (var i = 0; i < 8; i++)
+        {
+            Instantiate(pawn,gridManager.Grid[i,1].transform.localPosition,Quaternion.identity);
+        }
     }
 
     
