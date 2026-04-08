@@ -33,44 +33,66 @@ public class ChessPiecesGenerator : MonoBehaviour
     {
         for (var i = 0; i < 8; i++)
         {
-            Instantiate(pieces[0], gridManager.Grid[i,1].transform.position, Quaternion.identity, gridManager.Grid[i,1].transform); 
+            var parent = gridManager.Grid[i, 1].transform;
+            Instantiate(pieces[0], parent.position, Quaternion.identity, parent); 
+            pieces[0].Subscriber(gridManager);
+        }
+        
+        for (var i = 0; i < 8; i++)
+        {
+            var parent = gridManager.Grid[i, 6].transform;
+            Instantiate(pieces[0], parent.position, Quaternion.identity, parent); 
             pieces[0].Subscriber(gridManager);
         }
     }
 
     private void GenerateRooks()
     {
-        GenerateForPiece(1, 0, 7);
+        GenerateForPiece(1, 0, 7, 0);
+        GenerateForPiece(1, 0, 7, 7);
         pieces[1].Subscriber(gridManager);
     }
 
     private void generateKnights()
     {
-        GenerateForPiece(2, 1, 6);
+        GenerateForPiece(2, 1, 6, 0);
+        GenerateForPiece(2, 1, 6, 7);
         pieces[2].Subscriber(gridManager);
     }
     
     private void generateBishops()
     {
-        GenerateForPiece(3, 2, 5);
+        GenerateForPiece(3, 2, 5,0);
+        GenerateForPiece(3, 2, 5,7);
         pieces[3].Subscriber(gridManager);
     }
 
     private void GenerateQueen()
     {
-        Instantiate(pieces[4], gridManager.Grid[3,0].transform.position, Quaternion.identity, gridManager.Grid[3,0].transform); 
+        GenerateRoyals(4, 3, 0);
+        GenerateRoyals(4, 3, 7);
         pieces[4].Subscriber(gridManager);
     }
     
     private void GenerateKing()
     {
-        Instantiate(pieces[5], gridManager.Grid[4,0].transform.position, Quaternion.identity, gridManager.Grid[4,0].transform); 
+        GenerateRoyals(5, 4, 0);
+        GenerateRoyals(5, 4, 7);
         pieces[5].Subscriber(gridManager);
     }
 
-    private void GenerateForPiece(int PieceIndex, int FirstPlace, int SecondPlace)
+    private void GenerateForPiece(int pieceIndex, int firstColumn, int SecondColumn, int row)
     {
-        Instantiate(pieces[PieceIndex], gridManager.Grid[FirstPlace,0].transform.position, Quaternion.identity, gridManager.Grid[FirstPlace,0].transform); 
-        Instantiate(pieces[PieceIndex], gridManager.Grid[SecondPlace,0].transform.position, Quaternion.identity, gridManager.Grid[SecondPlace,0].transform); 
+        var firstParent = gridManager.Grid[firstColumn, row].transform;
+        var secondParent = gridManager.Grid[SecondColumn, row].transform;
+        
+        Instantiate(pieces[pieceIndex], firstParent.position, Quaternion.identity, firstParent); 
+        Instantiate(pieces[pieceIndex], secondParent.position, Quaternion.identity, secondParent); 
+    }
+
+    private void GenerateRoyals(int pieceIndex, int column, int row)
+    {
+        var parent = gridManager.Grid[column, row].transform;
+        Instantiate(pieces[pieceIndex], parent.position, Quaternion.identity, parent); 
     }
 }
