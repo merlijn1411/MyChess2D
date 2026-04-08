@@ -11,6 +11,5 @@ public class Tile : MonoBehaviour
         WorldPosition = worldPosition;
         GridPosition = gridPosition;
         IsOccupied = false;
-
     }
 }
