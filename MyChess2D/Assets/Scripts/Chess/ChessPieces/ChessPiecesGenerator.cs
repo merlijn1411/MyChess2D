@@ -25,8 +25,8 @@ public class ChessPiecesGenerator : MonoBehaviour
         GenerateRooks();
         generateKnights();
         generateBishops();
-        GenerateQueen();
-        GenerateKing();
+        GenerateQueens();
+        GenerateKings();
     }
 
     private void GeneratePawns()
@@ -67,14 +67,14 @@ public class ChessPiecesGenerator : MonoBehaviour
         pieces[3].Subscriber(gridManager);
     }
 
-    private void GenerateQueen()
+    private void GenerateQueens()
     {
         GenerateRoyals(4, 3, 0);
         GenerateRoyals(4, 3, 7);
         pieces[4].Subscriber(gridManager);
     }
     
-    private void GenerateKing()
+    private void GenerateKings()
     {
         GenerateRoyals(5, 4, 0);
         GenerateRoyals(5, 4, 7);
