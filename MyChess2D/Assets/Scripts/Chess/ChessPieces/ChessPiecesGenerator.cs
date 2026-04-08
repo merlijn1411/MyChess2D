@@ -33,15 +33,13 @@ public class ChessPiecesGenerator : MonoBehaviour
     {
         for (var i = 0; i < 8; i++)
         {
-            var parent = gridManager.Grid[i, 1].transform;
-            Instantiate(pieces[0], parent.position, Quaternion.identity, parent); 
+            GenerateForPiece(0, i, 1);
             pieces[0].Subscriber(gridManager);
         }
         
         for (var i = 0; i < 8; i++)
         {
-            var parent = gridManager.Grid[i, 6].transform;
-            Instantiate(pieces[0], parent.position, Quaternion.identity, parent); 
+            GenerateForPiece(0, i, 6);
             pieces[0].Subscriber(gridManager);
         }
     }
@@ -79,6 +77,12 @@ public class ChessPiecesGenerator : MonoBehaviour
         GenerateRoyals(5, 4, 0);
         GenerateRoyals(5, 4, 7);
         pieces[5].Subscriber(gridManager);
+    }
+    
+    private void GenerateForPiece(int pieceIndex, int firstColumn, int row)
+    {
+        var firstParent = gridManager.Grid[firstColumn, row].transform; 
+        Instantiate(pieces[pieceIndex], firstParent.position, Quaternion.identity, firstParent);
     }
 
     private void GenerateForPiece(int pieceIndex, int firstColumn, int SecondColumn, int row)
