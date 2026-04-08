@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    public static GridManager GridInstance { get; private set; }
+    
     public int height;
     public int width;
     public float cellSize;
     
     public GridRenderMask gridRenderMask;
     
-    private Tile[,] _grid;
+    public Tile[,] Grid { get; private set;}
 
     [SerializeField] private Material lineMaterial;
     [SerializeField] private List<GameObject> cellPrefabs;
     
     private void Awake()
     {
+        GridInstance = this;
+        
         CreateGrid();
-        Debug.Log(_grid[1, 1]);
     }
-    
-    
+
     private void CreateGrid()
     {
-        _grid = new Tile[width, height];
+        Grid = new Tile[width, height];
 
         for (var y = 0; y < width; y++)
         {   
@@ -32,12 +34,20 @@ public class GridManager : MonoBehaviour
             {
                 var startPos = new Vector3(x + 0.5f, y + 0.5f);
                 var worldPosition = new Vector3( startPos.x * cellSize, startPos.y * cellSize, 0f);
-                RenderGrid(worldPosition);
+                var tile = RenderGrid(worldPosition);
+
+                var tileObject = tile.GetComponent<Tile>();
+                if (tileObject == null)
+                {
+                    Debug.Log("Tile prefab missed a Tile-script!");
+                    continue;
+                }
+                Grid[x, y] = tileObject;
             }
         }
     }
 
-    private void RenderGrid(Vector3 worldPosition)
+    private GameObject RenderGrid(Vector3 worldPosition)
     {
         if (gridRenderMask == GridRenderMask.LineRenderer)
         {
@@ -48,8 +58,10 @@ public class GridManager : MonoBehaviour
         if (gridRenderMask == GridRenderMask.SpriteRender)
         {
             var spriteRendererGrid = gameObject.GetOrAddComponent<SpriteRendererGrid>();
-            spriteRendererGrid.CreateGrid(worldPosition, cellSize ,cellPrefabs);
+            return spriteRendererGrid.CreateGrid(worldPosition, cellSize ,cellPrefabs);
         }
+
+        return null;
     }
     
     private void OnValidate()
