@@ -4,11 +4,16 @@ namespace Chess
 {
     public class Pawn : IChessPiece
     {
-        private bool _firstMove = true;
 
         public override void Start()
         {
             base.Start();
+            steps = 2;
+        }
+
+        public override void OnFirstMove()
+        {
+            steps = 1;
         }
 
         public override void OnMouseEnter()

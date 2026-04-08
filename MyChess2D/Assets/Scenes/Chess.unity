@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 8
   width: 8
-  cellSize: 2
+  cellSize: 1
   gridRenderMask: 1
   lineMaterial: {fileID: 2100000, guid: 029d884116d871049a8a059850a168ea, type: 2}
   cellPrefabs:
@@ -292,6 +292,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridManager: {fileID: 1137425586}
   pawn: {fileID: 5618962234464904494, guid: 016f2bbb7aecb22428338b5f8d94fa06, type: 3}
+  pieces:
+  - {fileID: 5618962234464904494, guid: 016f2bbb7aecb22428338b5f8d94fa06, type: 3}
+  - {fileID: 194460062451969188, guid: 2914274b3ae843c45ab9b300e4325c78, type: 3}
+  - {fileID: 5058776484132193798, guid: 8eccd04ead7cb24428b0245e26a91416, type: 3}
+  - {fileID: 5929660169817976587, guid: 484305597adc9944da737b8cbd8ddef9, type: 3}
+  - {fileID: 5465018902411627104, guid: bc2f8c1f6c3e4a24584765e7c0714008, type: 3}
+  - {fileID: 2502619841624967185, guid: dbdff682762274545812baf69964ee1f, type: 3}
 --- !u!1 &1790986231
 GameObject:
   m_ObjectHideFlags: 0

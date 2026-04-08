@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    public static GridManager GridInstance { get; private set; }
+    
     public int height;
     public int width;
     public float cellSize;
@@ -17,6 +19,8 @@ public class GridManager : MonoBehaviour
     
     private void Awake()
     {
+        GridInstance = this;
+        
         CreateGrid();
     }
 

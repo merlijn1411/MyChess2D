@@ -3,12 +3,12 @@ using UnityEngine;
 public class LineRendererGrid : GridRenderer
 {
     private Material _lineMaterial;
-     
+    
     public override void CreateGrid(Vector3 worldPosition, float cellSize,Material lineMaterial)
     {
         _lineMaterial = lineMaterial;
         
-        if (gridManager.gridRenderMask != GridRenderMask.LineRenderer) return;
+        if (GridManager.GridInstance.gridRenderMask != GridRenderMask.LineRenderer) return;
         var drawX = worldPosition.x * cellSize;
         var drawY = worldPosition.y * cellSize;
         

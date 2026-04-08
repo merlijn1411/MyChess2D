@@ -15,14 +15,19 @@ namespace Chess
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
+        public virtual void OnFirstMove()
+        {
+            
+        }
+
+        public virtual void OnInteract()
+        {
+            
+        }
+
         public virtual void OnMouseEnter()
         {
             Debug.Log(gameObject.name);
-        }
-        
-        public void SetInGrid()
-        {
-            
         }
         
         public void Subscriber(GridManager gridManager)
