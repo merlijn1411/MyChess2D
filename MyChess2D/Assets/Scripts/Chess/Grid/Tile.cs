@@ -8,8 +8,6 @@ public class Tile : MonoBehaviour
     public Vector2Int GridPosition { get; }
     public bool IsOccupied { get; set; }
     
-    public Tile tileNumber { get; private set; }
-    
     public Tile(Vector3 worldPosition, Vector2Int gridPosition)
     {
         WorldPosition = worldPosition;
@@ -19,15 +17,15 @@ public class Tile : MonoBehaviour
 
     public virtual void OnMouseDown()
     {
+        var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            
+        if (hit.collider == null) return;
+        
         var stateHandler = PlayerStateHandler.Instance;
         var tileTarget = stateHandler.State == PlayerState.PiecePicked ? this : null;
         PlayerStateHandler.Instance.TileTarget = tileTarget;
     }
-
-    public void SetTileNumber(Tile board)
-    {
-        tileNumber = board;
-    }
+    
 
     private void OnEnable()
     {

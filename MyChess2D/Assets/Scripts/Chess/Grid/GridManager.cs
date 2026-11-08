@@ -43,7 +43,6 @@ public class GridManager : MonoBehaviour
                     continue;
                 }
                 Grid[x, y] = tileObject;
-                tileObject.SetTileNumber(Grid[x, y]);
             }
         }
     }

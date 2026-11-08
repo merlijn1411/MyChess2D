@@ -11,6 +11,8 @@ public class PlayerStateHandler : MonoBehaviour
 
     public IChessPiece PieceTarget  { get; set; }
     public Tile TileTarget { get; set; }
+
+    public bool IsSelected;
     
     private void Awake()
     {
@@ -25,8 +27,7 @@ public class PlayerStateHandler : MonoBehaviour
 
     private IEnumerator HandleRoutine()
     {
-        yield return new WaitUntil( () => (HasTarget(PieceTarget) && HasTarget(TileTarget)) ); 
-        Debug.Log("yes");
+        yield return new WaitUntil( () => HasTarget(PieceTarget) && HasTarget(TileTarget) ); 
         PieceTarget.MovePiece(TileTarget.transform);
         RoutineReset();
     }
@@ -44,12 +45,12 @@ public class PlayerStateHandler : MonoBehaviour
         State = newState;
     }
     
-    private bool HasTarget(Tile target)
+    private static bool HasTarget(Tile target)
     {
         return target != null;
     }
     
-    private bool HasTarget(IChessPiece target)
+    private static bool HasTarget(IChessPiece target)
     {
         return target != null;
     }
