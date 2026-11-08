@@ -22,6 +22,10 @@ namespace Chess
 
         private void OnMouseDown()
         {
+            var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            
+            if (hit.collider == null) return;
+            Debug.Log(hit.collider.name);
             OnInteract();
         }
 
@@ -30,7 +34,7 @@ namespace Chess
             
         }
 
-        public virtual void OnInteract()
+        protected virtual void OnInteract()
         {
             _isSelected = !_isSelected;
             var pieceTarget = _isSelected 
