@@ -17,6 +17,13 @@ public class Tile : MonoBehaviour
         IsOccupied = false;
     }
 
+    public virtual void OnMouseDown()
+    {
+        var stateHandler = PlayerStateHandler.Instance;
+        var tileTarget = stateHandler.State == PlayerState.PiecePicked ? this : null;
+        PlayerStateHandler.Instance.TileTarget = tileTarget;
+    }
+
     public void SetTileNumber(Tile board)
     {
         tileNumber = board;

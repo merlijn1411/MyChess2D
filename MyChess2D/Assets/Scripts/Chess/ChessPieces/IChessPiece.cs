@@ -1,12 +1,9 @@
-using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Chess
 {
     public class IChessPiece : MonoBehaviour
     {
-        public Transform targetTransform;
         protected Tile[,] _board;
         
         protected GridManager _gridManager;
@@ -15,9 +12,12 @@ namespace Chess
 
         private bool _isSelected = false;
         
+        private PlayerStateHandler  _playerStateHandler;
+        
         public virtual void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _playerStateHandler = PlayerStateHandler.Instance;
         }
 
         private void OnMouseDown()
@@ -33,18 +33,23 @@ namespace Chess
         public virtual void OnInteract()
         {
             _isSelected = !_isSelected;
+            var pieceTarget = _isSelected 
+                ? this 
+                : null;
+            
+            var stateChange = _isSelected
+                ? PlayerState.PiecePicked
+                : PlayerState.Idle;
+            
+            _playerStateHandler.PieceTarget = pieceTarget;
+            _playerStateHandler.ChangeState(stateChange);
             
         }
 
-        private void MovePiece()
+        public void MovePiece(Transform target)
         {
-            transform.position = targetTransform.position;
+            transform.position = target.position;
         }
-
-        // public virtual void OnMouseEnter()
-        // {
-        //     Debug.Log(gameObject.name);
-        // }
         
         public void Subscriber(GridManager gridManager)
         {
