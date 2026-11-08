@@ -6,13 +6,23 @@ namespace Chess
 {
     public class IChessPiece : MonoBehaviour
     {
+        public Transform targetTransform;
+        protected Tile[,] _board;
+        
         protected GridManager _gridManager;
         protected SpriteRenderer _spriteRenderer;
         [SerializeField] protected int steps;
 
+        private bool _isSelected = false;
+        
         public virtual void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        private void OnMouseDown()
+        {
+            OnInteract();
         }
 
         public virtual void OnFirstMove()
@@ -22,13 +32,19 @@ namespace Chess
 
         public virtual void OnInteract()
         {
+            _isSelected = !_isSelected;
             
         }
 
-        public virtual void OnMouseEnter()
+        private void MovePiece()
         {
-            Debug.Log(gameObject.name);
+            transform.position = targetTransform.position;
         }
+
+        // public virtual void OnMouseEnter()
+        // {
+        //     Debug.Log(gameObject.name);
+        // }
         
         public void Subscriber(GridManager gridManager)
         {
