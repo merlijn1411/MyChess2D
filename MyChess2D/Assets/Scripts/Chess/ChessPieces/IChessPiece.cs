@@ -9,8 +9,6 @@ namespace Chess
         protected GridManager _gridManager;
         protected SpriteRenderer _spriteRenderer;
         [SerializeField] protected int steps;
-
-        private bool _isSelected = false;
         
         private PlayerStateHandler  _playerStateHandler;
         
@@ -25,7 +23,6 @@ namespace Chess
             var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             
             if (hit.collider == null) return;
-            Debug.Log(hit.collider.name);
             OnInteract();
         }
 
@@ -36,12 +33,14 @@ namespace Chess
 
         protected virtual void OnInteract()
         {
-            _isSelected = !_isSelected;
-            var pieceTarget = _isSelected 
+            var isSelected = _playerStateHandler.IsSelected;
+            isSelected = !isSelected;
+
+            var pieceTarget = isSelected 
                 ? this 
                 : null;
             
-            var stateChange = _isSelected
+            var stateChange = isSelected
                 ? PlayerState.PiecePicked
                 : PlayerState.Idle;
             
@@ -53,6 +52,7 @@ namespace Chess
         public void MovePiece(Transform target)
         {
             transform.position = target.position;
+            _playerStateHandler.IsSelected = false;
         }
         
         public void Subscriber(GridManager gridManager)

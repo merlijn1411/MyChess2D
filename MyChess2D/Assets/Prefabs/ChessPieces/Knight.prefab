@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5761282018146437073}
   - component: {fileID: 5058776484132193798}
   - component: {fileID: 589402316358937811}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,10 +115,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 1
   m_ForceSendLayers:
     serializedVersion: 2

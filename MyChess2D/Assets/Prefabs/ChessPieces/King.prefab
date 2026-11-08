@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 317322326366569999}
   - component: {fileID: 2502619841624967185}
   - component: {fileID: 3848531519275385498}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: King
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,10 +115,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 1
   m_ForceSendLayers:
     serializedVersion: 2

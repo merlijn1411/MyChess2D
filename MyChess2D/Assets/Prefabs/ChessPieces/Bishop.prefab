@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3449197192246133684}
   - component: {fileID: 5929660169817976587}
   - component: {fileID: 2548237572360870382}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bishop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,10 +115,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 1
   m_ForceSendLayers:
     serializedVersion: 2
