@@ -28,11 +28,11 @@ public class GridManager : MonoBehaviour
     {
         Grid = new Tile[width, height];
 
-        for (var y = 0; y < width; y++)
+        for (var r = 0; r < width; r++)
         {   
-            for (var x = 0; x < height; x++)
+            for (var c = 0; c < height; c++)
             {
-                var startPos = new Vector3(x + 0.5f, y + 0.5f);
+                var startPos = new Vector3(c + 0.5f, r + 0.5f);
                 var worldPosition = new Vector3( startPos.x * cellSize, startPos.y * cellSize, 0f);
                 var tile = RenderGrid(worldPosition);
 
@@ -42,7 +42,8 @@ public class GridManager : MonoBehaviour
                     Debug.Log("Tile prefab missed a Tile-script!");
                     continue;
                 }
-                Grid[x, y] = tileObject;
+                Grid[c, r] = tileObject;
+                tileObject.AddColumnRow(c,r);
             }
         }
     }

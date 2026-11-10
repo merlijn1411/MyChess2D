@@ -15,11 +15,6 @@ namespace Chess
         {
             steps = 1;
         }
-
-        public override void OnMouseEnter()
-        {
-            base.OnMouseEnter();
-        }
         
     }
 }
