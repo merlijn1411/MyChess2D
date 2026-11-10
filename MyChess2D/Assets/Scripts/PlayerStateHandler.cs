@@ -12,7 +12,7 @@ public class PlayerStateHandler : MonoBehaviour
     public IChessPiece PieceTarget  { get; set; }
     public Tile TileTarget { get; set; }
 
-    public bool IsSelected;
+    public bool IsSelected = false;
     
     private void Awake()
     {
@@ -27,6 +27,9 @@ public class PlayerStateHandler : MonoBehaviour
 
     private IEnumerator HandleRoutine()
     {
+        if (State == PlayerState.PiecePicked) BoardGrabber.GrabberInstance.GetNotOccupiedTiles();
+        
+        
         yield return new WaitUntil( () => HasTarget(PieceTarget) && HasTarget(TileTarget) ); 
         PieceTarget.MovePiece(TileTarget.transform);
         RoutineReset();

@@ -10,7 +10,7 @@ namespace Chess
         protected SpriteRenderer _spriteRenderer;
         [SerializeField] protected int steps;
         
-        private PlayerStateHandler  _playerStateHandler;
+        protected PlayerStateHandler  _playerStateHandler;
         
         public virtual void Start()
         {
